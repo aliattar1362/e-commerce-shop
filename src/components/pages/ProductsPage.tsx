@@ -1,10 +1,10 @@
-import { productsUrl } from "../data/data";
+import { baseUrl } from "../data/data";
 import useFetch from "../hook/useFetch";
 import { Product } from "../misc/type";
 import ProductList from "../products/productList/ProductList";
 
 const ProductsPage = () => {
-     const { data, loading, error } = useFetch<Product[]>(productsUrl);
+     const { data, loading, error } = useFetch<Product[]>(baseUrl);
 
   if (loading) {
     return <p>Loading...</p>;
