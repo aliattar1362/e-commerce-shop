@@ -3,7 +3,7 @@ import Header from "./Header";
 import { Container, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import ProductDetails from "../products/productDetails/ProductDetails";
+import ProductDetails from "../pages/products/productDetails/ProductDetails";
 import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
 import ProductsPage from "../pages/ProductsPage";

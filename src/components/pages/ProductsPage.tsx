@@ -1,7 +1,7 @@
 import { baseUrl } from "../data/data";
 import useFetch from "../hook/useFetch";
 import { Product } from "../misc/type";
-import ProductList from "../products/productList/ProductList";
+import ProductList from "./products/productList/ProductList";
 
 const ProductsPage = () => {
      const { data, loading, error } = useFetch<Product[]>(baseUrl);

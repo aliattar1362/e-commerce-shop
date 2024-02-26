@@ -10,3 +10,13 @@ export interface Product {
     count: number;
   };
 }
+
+export interface CartItem {
+  quantity: number;
+  product: Product;
+}
+
+export interface Cart {
+  items: CartItem[];
+  total: number;
+}

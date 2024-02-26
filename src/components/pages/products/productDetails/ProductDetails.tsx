@@ -1,8 +1,8 @@
 import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { baseUrl } from "../../data/data";
-import useFetch from "../../hook/useFetch";
-import { Product } from "../../misc/type";
+import { baseUrl } from "../../../data/data";
+import useFetch from "../../../hook/useFetch";
+import { Product } from "../../../misc/type";
 
 const ProductDetails = () => {
      const {id} = useParams<{id: string}>();

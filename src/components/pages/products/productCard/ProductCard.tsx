@@ -1,6 +1,8 @@
 import { Avatar,  Button, Card, CardActions, CardContent, CardMedia, Typography, CardHeader } from "@mui/material";
-import { Product } from "../../misc/type";
+import { Product } from "../../../misc/type";
 import { Link } from "react-router-dom";
+import useFetch from "../../../hook/useFetch";
+import { baseUrl } from "../../../data/data";
 
 
 interface Props {
@@ -8,6 +10,12 @@ interface Props {
 }
 
 const ProdcutCard = ({product} : Props) => {
+    const {data, loading, error} = useFetch(baseUrl)
+
+    const handleAddToCart = () => {
+        
+    }
+
     return (
         <>
            <Card >
