@@ -28,6 +28,7 @@ const useFetch = <T>(url: string) => {
   // return
   return {
     data,
+    setData,
     loading,
     error,
   };

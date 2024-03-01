@@ -1,25 +1,24 @@
-import { Grid } from "@mui/material";
-import { Product } from "../../../misc/type";
-import ProdcutCard from "../productCard/ProductCard";
+
+import { ProductType } from "../../../misc/type";
+import ProductCard from "../productCard/ProductCard";
+import { Button, Grid } from "@mui/material";
 
 interface Props {
-    products: Product[];
+  products: ProductType[];
+  addProduct: () => void;
 }
 
-const ProductList = ({products}: Props ) => {
-    return ( 
-        <>
-            <Grid container spacing={4}>
-                {products.map((product) => { return (
-                    <Grid item xs={3} key={product.id}>
-                         <ProdcutCard product={product} />
-                    </Grid>
-                   
-                )})}
-            </Grid>
-
-        </> 
-    );
+export default function ProductList({ products, addProduct}: Props) {
+  return (
+    <Grid container spacing={2}>
+      {products.map((product) => (
+        <Grid key={product.id} item xs={12} sm={3}>
+          <ProductCard product={product}/>
+        </Grid>
+      ))}
+      <Grid item xs={12}>
+        <Button onClick={addProduct} variant="contained" sx={{margin: "40px 0"}}>Add Product</Button>
+      </Grid>
+    </Grid>
+  );
 }
- 
-export default ProductList;

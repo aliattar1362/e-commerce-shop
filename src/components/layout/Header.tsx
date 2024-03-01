@@ -1,7 +1,11 @@
 import { ShoppingCart } from "@mui/icons-material";
-import { AppBar, Toolbar, Typography, Switch, List, ListItem, IconButton, Badge, Box } from "@mui/material";
+import { AppBar, Toolbar, Typography, Switch, List, ListItem, IconButton, Badge, Box, Drawer } from "@mui/material";
+import { useSelector } from "react-redux";
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { AppState } from "../../reduxToolkit/store";
+
+
 
 interface Props{
     darkMode: boolean;
@@ -29,6 +33,11 @@ const navStyles = {
 }
 
 const Header = ({darkMode, handleThemeChange}: Props) => {
+
+ 
+    const totalQuantity = useSelector((state: AppState) => state.cart.totalQuantity);
+   
+ 
     return ( 
     <>
         <AppBar position="static" sx={{mb: 4}}>
@@ -60,11 +69,14 @@ const Header = ({darkMode, handleThemeChange}: Props) => {
 
                 <Box display="flex" alignItems="center">
                      {/* Shopping cart icon button */}
-                    <IconButton size="large" sx={{color: "inherit"}}>
-                        <Badge badgeContent={4} color="secondary">
-                            <ShoppingCart />
-                        </Badge>
-                    </IconButton>
+                     <IconButton size="large" sx={{color: "inherit"}} component={Link} to={"/cart"}>
+                          <Badge badgeContent={totalQuantity} color="secondary">
+                              <ShoppingCart/>
+                          </Badge>
+                     </IconButton>  
+                   
+
+
                     <List sx={{display: "flex" }}>
                     {rightLinks.map( ({title, path}) => (
                         <ListItem 

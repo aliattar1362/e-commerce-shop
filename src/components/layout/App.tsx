@@ -2,14 +2,17 @@ import { useState } from "react";
 import Header from "./Header";
 import { Container, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
+import ProductPage from "../pages/ProductsPage";
 import HomePage from "../pages/HomePage";
 import ProductDetails from "../pages/products/productDetails/ProductDetails";
-import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
-import ProductsPage from "../pages/ProductsPage";
+import AboutPage from "../pages/AboutPage";
+import ShoppingCartPage from "../pages/ShoppingCardPage";
+
 
 function App() {
 
+// Theme Styles
   const [darkMode, setDarkMode] = useState(false);
 
   const handleThemeChange = () => {
@@ -35,10 +38,11 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<HomePage/>} />
-            <Route path="/products" element={<ProductsPage/>} />
+            <Route path="/products" element={<ProductPage/>} />
             <Route path="/products/:id" element={<ProductDetails/>} />
-            <Route path="/about" element={<AboutPage/>} />
             <Route path="/contact" element={<ContactPage/>} />
+            <Route path="/about" element={<AboutPage/>} />
+            <Route path="/cart" element={<ShoppingCartPage />} />
           </Routes>
         </Container>
       </ThemeProvider>

@@ -1,55 +1,58 @@
-import { Avatar,  Button, Card, CardActions, CardContent, CardMedia, Typography, CardHeader } from "@mui/material";
-import { Product } from "../../../misc/type";
+import {CardMedia, CardContent, Typography, CardActions, Button, Grid, IconButton, Avatar, CardHeader, Card} from "@mui/material"
+import { ProductType } from "../../../misc/type"
+import { red } from "@mui/material/colors"
 import { Link } from "react-router-dom";
-import useFetch from "../../../hook/useFetch";
-import { baseUrl } from "../../../data/data";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../../../reduxToolkit/slices/cartSlice";
 
 
 interface Props {
-    product: Product;
+    product: ProductType;
 }
 
-const ProdcutCard = ({product} : Props) => {
-    const {data, loading, error} = useFetch(baseUrl)
 
-    const handleAddToCart = () => {
-        
-    }
+export default function ProductCard({product}: Props) {
+    const dispatch = useDispatch()
 
-    return (
-        <>
-           <Card >
-                <CardHeader 
-                    avatar={
-                        <Avatar sx={{bgcolor: "secondary.main"}}>
-                            {product.title.charAt(0).toUpperCase()}
-                        </Avatar>
-                    }
-                    title = {product.title}
-                    titleTypographyProps={{
-                        sx: {fontWeight: "bold", color:"secondary.main"}
-                    }}
-                />
-                <CardMedia
-                    sx={{ height: 140, backgroundSize: "contain"}}
-                    image={product.image}
-                    title={product.title}
-                />
-                <CardContent >
-                    <Typography gutterBottom color="secondary" variant="h5" >
-                    €{product.price.toFixed(2)}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{height: "150px", overflow: "auto"}}>
+    const addToCart = (product: ProductType) => {
+    // dispatch an addItem action
+    dispatch(addItem(product))
+  }
+
+  return (
+    <div>
+     <Card >
+           <CardHeader
+        avatar={
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            {product.title[0]}
+          </Avatar>
+        }
+
+        title={product.title}
+      />
+      
+         <CardMedia
+        sx={{ height: 140 , backgroundSize: "contain"}}
+        image={product.image}
+        title="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom color="secondary" variant="h5">
+          €{product.price}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{height: "150px", overflow: "auto"}}>
                     {product.category}/{product.description}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                         <Button size="small">Add to cart</Button>
-                    <Button component={Link} to={`/products/${product.id}`} size="small">View</Button>
-                </CardActions>
-            </Card>
-        </>
-      );
+        </Typography>
+      </CardContent>
+      <CardActions >
+
+        <Button size="small" component={Link} to={"/cart"} onClick={() => addToCart(product)}>Add to cart</Button>
+        <Button size="small" component={Link} to={`/products/${product.id}`}>View</Button>
+   
+      </CardActions>
+      </Card>
+       
+    </div>
+  )
 }
- 
-export default ProdcutCard;

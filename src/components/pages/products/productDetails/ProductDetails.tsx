@@ -2,12 +2,12 @@ import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, T
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../../data/data";
 import useFetch from "../../../hook/useFetch";
-import { Product } from "../../../misc/type";
+import { ProductType } from "../../../misc/type";
 
 const ProductDetails = () => {
      const {id} = useParams<{id: string}>();
 
-     const { data, loading, error } = useFetch<Product>(`${baseUrl}/${id}`);
+     const { data, loading, error } = useFetch<ProductType>(`${baseUrl}/${id}`);
 
     if (loading) {
         return <p>Loading...</p>;
@@ -16,8 +16,6 @@ const ProductDetails = () => {
     if (!data) {
         return <p>{error}</p>;
     }
-
-    console.log(data)
     
     return ( 
          <>

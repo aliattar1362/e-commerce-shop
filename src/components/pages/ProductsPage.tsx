@@ -1,24 +1,44 @@
+import { ProductType } from "../misc/type"
 import { baseUrl } from "../data/data";
 import useFetch from "../hook/useFetch";
-import { Product } from "../misc/type";
 import ProductList from "./products/productList/ProductList";
 
-const ProductsPage = () => {
-     const { data, loading, error } = useFetch<Product[]>(baseUrl);
+export default function ProductPage() {
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
-  if (error || data === null) {
-    return <p>{error || 'Error loading data'}</p>;
-  }
+  const { data, setData, loading, error } = useFetch<ProductType[]>(baseUrl);
 
-    return ( 
-        <>
-            <ProductList products={data} />
-        </>
-     );
+  // Check if data is null
+  const isNull = data === null;
+  console.log("is null:", isNull);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+  if (!data) return null;
+
+  // ...
+  const addProduct = () => {
+  setData((prevData) => [
+    ...(prevData!), // non-null assertion
+    {
+      id: (prevData!.length || 0) + 101,
+      title: "product",
+      price: 100,
+      description: "some description",
+      category: "some category",
+      image: "https://picsum.photos/200",
+      rating: {
+        rate: 101,
+        count: 101,
+      },
+    },
+  ]);
+};
+
+  return (
+    <div>
+        <ProductList products={data} addProduct={addProduct}/>
+    </div>
+  )
 }
- 
-export default ProductsPage;
+
