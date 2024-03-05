@@ -40,6 +40,8 @@ export default function UserRegister() {
         // save data in redux
         dispatch(saveUserData(response.data))
 
+        console.log("response.data", response.data)
+
         // navigate user to login in profile page
         navigate("/profile")
         }

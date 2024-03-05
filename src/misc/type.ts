@@ -35,3 +35,19 @@ export interface TokenType {
   access_token: string;
   refresh_token: string;
 }
+
+export interface FormData {
+  fname: string;
+  lname: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface ValidationErrors {
+  fname?: string;
+  lname?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+}

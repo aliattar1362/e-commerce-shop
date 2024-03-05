@@ -1,5 +1,6 @@
 
 import { ProductType } from "../../../../misc/type";
+import { ManageProducts } from "../manageProducts/ManageProducts";
 import ProductCard from "../productCard/ProductCard";
 import { Button, Grid } from "@mui/material";
 
@@ -17,7 +18,8 @@ export default function ProductList({ products, addProduct}: Props) {
         </Grid>
       ))}
       <Grid item xs={12}>
-        <Button onClick={addProduct} variant="contained" sx={{margin: "40px 0"}}>Add Product</Button>
+        {/* <Button onClick={addProduct} variant="contained" sx={{margin: "40px 0"}}>Add Product</Button> */}
+        <ManageProducts addProduct= {addProduct}/>
       </Grid>
     </Grid>
   );

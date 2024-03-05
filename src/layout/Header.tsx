@@ -15,8 +15,6 @@ interface Props{
 const midLinks = [
     {title: "products", path: "/products"},
     {title: "categories", path: "/categories"},
-    {title: "contact", path: "/contact"},
-    {title: "about", path: "/about"},
 ]
 
 const rightLinks = [
@@ -35,7 +33,8 @@ const navStyles = {
 
 const Header = ({darkMode, handleThemeChange}: Props) => {
 
- 
+    const userData = useSelector((state: AppState) => state.users.user)
+
     const totalQuantity = useSelector((state: AppState) => state.cart.totalQuantity);
    
  
@@ -65,6 +64,28 @@ const Header = ({darkMode, handleThemeChange}: Props) => {
 
                             </ListItem>
                         ))}
+                            { userData?.role === "admin" && (
+                                <ListItem 
+                                    component={NavLink}
+                                    to="contact"
+                                    key="contact"
+                                    sx={navStyles}>
+                                        {"contact".toUpperCase()}
+                                </ListItem>
+                            )
+                           
+                            }
+
+                            { (userData?.role === "customer" || userData?.role ==="admin") && (
+                                <ListItem 
+                                    component={NavLink}
+                                    to="about"
+                                    key="about"
+                                    sx={navStyles}>
+                                        {"about".toUpperCase()}
+                                </ListItem>)
+                            }
+
                     </List>
                 </Box>
 

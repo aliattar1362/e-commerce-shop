@@ -9,6 +9,10 @@ import ContactPage from "../components/pages/ContactPage";
 import AboutPage from "../components/pages/AboutPage";
 import ShoppingCartPage from "../components/pages/ShoppingCardPage";
 import { CategoriesPage } from "../components/pages/CategoriesPage";
+import { CheckPage } from "../components/pages/CheckPage";
+import UserRegister from "../components/categories/user/UserRegister";
+import UserProfile from "../components/categories/user/UserProfile";
+import { AdminPage } from "../components/pages/AdminPage";
 
 
 
@@ -42,6 +46,8 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage darkMode = {darkMode} handleThemeChange={handleThemeChange}/>}  />
             <Route path="/products" element={<ProductPage/>} />
+            {/* <Route path="/products" element={<AdminPage/>} /> */}
+            {/* <Route path="/products" element={<CheckPage/>} /> */}
             <Route path="/products/:id" element={<ProductDetails/>} />
             <Route path="/categories" element={<CategoriesPage/>} />
             <Route path="/contact" element={<ContactPage/>} />
@@ -49,6 +55,9 @@ function App() {
             <Route path="/cart" element={<ShoppingCartPage />} />
             {/* <Route path="/register" element={<RegisterPage />} />
             <Route path="/profile" element={<LoginPage />} /> */}
+            <Route path="/register" element={<UserRegister />}/>
+            <Route path="/login" element={<UserProfile  />}/>
+            <Route path="/profile" element={<UserProfile />}/>
           </Routes>
       </ThemeProvider>
     </>

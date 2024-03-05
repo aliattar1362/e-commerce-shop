@@ -3,12 +3,14 @@ import { useFetchAllProductsQuery, useDeleteProductMutation } from "../../reduxT
 import { useState } from "react";
 
 const ContactPage = () => {
-  const { data, error, isLoading } = useFetchAllProductsQuery();
-  const [deleteProduct] = useDeleteProductMutation();
-  const [number, setNumber] = useState(0);
+  const { data, isLoading } = useFetchAllProductsQuery();
+  // const [deleteProduct] = useDeleteProductMutation();
+
 
 
   console.log("query: ", data);
+
+  if (isLoading) return <h1>Loading...</h1>
 
 
   return (

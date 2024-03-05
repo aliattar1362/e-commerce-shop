@@ -19,8 +19,13 @@ export const cartSlice = createSlice({
       state.cart = action.payload;
       state.totalQuantity = calculateTotalQuantity(action.payload);
     },
+
     addItem: (state, action) => {
       const addedProduct = action.payload;
+      console.log("addedProduct", addedProduct);
+      console.log("state.cart.length", state.cart.length);
+      console.log("state.cart", state.cart);
+      console.log("state.totalQuantity", state.totalQuantity);
 
       const productIndex = state.cart.findIndex(
         (product) => product.id === addedProduct.id
@@ -33,12 +38,12 @@ export const cartSlice = createSlice({
       } else {
         state.cart[productIndex].rating.count -= 1;
 
-        if (
-          addedProduct.rating.initialCount - addedProduct.rating.count ===
-          1
-        ) {
-          window.alert("This item is already in the cart!");
-        }
+        // if (
+        //   addedProduct.rating.initialCount - addedProduct.rating.count ===
+        //   1
+        // ) {
+        //   window.alert("This item is already in the cart!");
+        // }
       }
       state.totalQuantity = calculateTotalQuantity(state.cart);
     },
