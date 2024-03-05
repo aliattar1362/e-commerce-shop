@@ -1,10 +1,23 @@
-import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
+import { Button, Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { baseUrl } from "../../../data/data";
-import useFetch from "../../../hook/useFetch";
-import { ProductType } from "../../../misc/type";
+import { baseUrl } from "../../../../data/data";
+import useFetch from "../../../../hook/useFetch";
+import { ProductType } from "../../../../misc/type";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../../../reduxToolkit/slices/cartSlice";
+
+
 
 const ProductDetails = () => {
+
+    const dispatch = useDispatch()
+
+    const addToCart = (product: ProductType) => {
+    // dispatch an addItem action
+    dispatch(addItem(product))
+  }
+
+
      const {id} = useParams<{id: string}>();
 
      const { data, loading, error } = useFetch<ProductType>(`${baseUrl}/${id}`);
@@ -54,6 +67,12 @@ const ProductDetails = () => {
                             <TableRow>
                                 <TableCell>Quantity in stock</TableCell>
                                 <TableCell>{data.rating.count}</TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell><Button variant="contained" sx={{height: "55px", width: "130px"}} color="secondary" onClick={() => addToCart(data)}>Add to cart</Button></TableCell>
+                                <TableCell>
+                                    <TextField variant="outlined" type="number" label="Quantity in Cart" value={0} />
+                                </TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>

@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography, Switch, List, ListItem, IconButton, Badge,
 import { useSelector } from "react-redux";
 
 import { Link, NavLink } from "react-router-dom";
-import { AppState } from "../../reduxToolkit/store";
+import { AppState } from "../reduxToolkit/store";
 
 
 
@@ -14,6 +14,7 @@ interface Props{
 
 const midLinks = [
     {title: "products", path: "/products"},
+    {title: "categories", path: "/categories"},
     {title: "contact", path: "/contact"},
     {title: "about", path: "/about"},
 ]

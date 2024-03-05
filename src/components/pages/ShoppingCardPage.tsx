@@ -1,14 +1,11 @@
 import { Button, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { Link as RouterLink } from 'react-router-dom';
-
 import { Delete } from "@mui/icons-material";
-
-import "../layout/styles.css"
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../reduxToolkit/store";
-import { ProductType } from "../misc/type";
+import { ProductType } from "../../misc/type";
 import { addItem, removeItem, deleteItem } from "../../reduxToolkit/slices/cartSlice";
-import { produce } from "immer";
+
 
 
 
@@ -32,13 +29,7 @@ export default function ShoppingCartPage() {
   }
 
 
-
-
-
-
-
   const cartProducts = useSelector((state: AppState) => state.cart.cart);
-  console.log(cartProducts)
 
   const totalAmount = cartProducts.reduce((acc, item) => acc + (item.price * ((item.rating.initialCount ?? 0) - (item.rating.count))), 0).toFixed(2);
 

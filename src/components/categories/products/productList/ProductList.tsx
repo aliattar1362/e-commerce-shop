@@ -1,5 +1,5 @@
 
-import { ProductType } from "../../../misc/type";
+import { ProductType } from "../../../../misc/type";
 import ProductCard from "../productCard/ProductCard";
 import { Button, Grid } from "@mui/material";
 

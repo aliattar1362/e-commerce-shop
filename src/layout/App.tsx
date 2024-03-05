@@ -1,13 +1,16 @@
 import { useState } from "react";
 import Header from "./Header";
-import { Container, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
-import ProductPage from "../pages/ProductsPage";
-import HomePage from "../pages/HomePage";
-import ProductDetails from "../pages/products/productDetails/ProductDetails";
-import ContactPage from "../pages/ContactPage";
-import AboutPage from "../pages/AboutPage";
-import ShoppingCartPage from "../pages/ShoppingCardPage";
+import ProductPage from "../components/pages/ProductsPage";
+import HomePage from "../components/pages/HomePage";
+import ProductDetails from "../components/categories/products/productDetails/ProductDetails";
+import ContactPage from "../components/pages/ContactPage";
+import AboutPage from "../components/pages/AboutPage";
+import ShoppingCartPage from "../components/pages/ShoppingCardPage";
+import { CategoriesPage } from "../components/pages/CategoriesPage";
+
+
 
 
 function App() {
@@ -35,16 +38,18 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header darkMode = {darkMode} handleThemeChange={handleThemeChange}/>
-        <Container>
+        
           <Routes>
-            <Route path="/" element={<HomePage/>} />
+            <Route path="/" element={<HomePage darkMode = {darkMode} handleThemeChange={handleThemeChange}/>}  />
             <Route path="/products" element={<ProductPage/>} />
             <Route path="/products/:id" element={<ProductDetails/>} />
+            <Route path="/categories" element={<CategoriesPage/>} />
             <Route path="/contact" element={<ContactPage/>} />
             <Route path="/about" element={<AboutPage/>} />
             <Route path="/cart" element={<ShoppingCartPage />} />
+            {/* <Route path="/register" element={<RegisterPage />} />
+            <Route path="/profile" element={<LoginPage />} /> */}
           </Routes>
-        </Container>
       </ThemeProvider>
     </>
   );

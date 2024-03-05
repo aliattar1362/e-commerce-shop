@@ -1,12 +1,20 @@
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
+import { FooterSection } from "../footer/FooterSection";
+import { Carousel } from "../../layout/Carousel ";
+import { AllCategories } from "../categories/AllCategories";
 
-const HomePage = () => {
+interface Props {
+    darkMode: boolean;
+    handleThemeChange: () => void;
+}
+
+const HomePage = ({ darkMode, handleThemeChange }: Props) => {
     return ( 
-        <>
-            <Typography variant="h2">
-            Home Page
-            </Typography>
-        </> 
+        <div style={{margin: "0"}}>
+            <Carousel/>
+            <AllCategories/>
+            <FooterSection darkMode = {darkMode} handleThemeChange={handleThemeChange}/>
+        </div> 
     );
 }
  

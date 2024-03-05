@@ -1,12 +1,20 @@
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { ProductType } from "../../misc/type";
+
 
 const AboutPage = () => {
+    const dispatch = useDispatch();
+    const [productData, setProductData] = useState<ProductType[]>([])
+
+
     return ( 
-    <>
-        <Typography variant="h2">
-            About Page
-        </Typography>
-    </> 
+        <Container>
+            <Typography variant="h2">AboutPage</Typography>
+        </Container>
+        
+   
     );
 }
  

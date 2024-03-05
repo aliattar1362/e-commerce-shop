@@ -1,7 +1,8 @@
-import { ProductType } from "../misc/type"
-import { baseUrl } from "../data/data";
-import useFetch from "../hook/useFetch";
-import ProductList from "./products/productList/ProductList";
+import { ProductType } from "../../misc/type"
+import { baseUrl } from "../../data/data";
+import useFetch from "../../hook/useFetch";
+import ProductList from "../categories/products/productList/ProductList";
+import { Container } from "@mui/material";
 
 export default function ProductPage() {
 
@@ -36,9 +37,11 @@ export default function ProductPage() {
 };
 
   return (
-    <div>
-        <ProductList products={data} addProduct={addProduct}/>
-    </div>
+   
+    <Container>
+      <ProductList products={data} addProduct={addProduct}/>
+    </Container>
+   
   )
 }
 

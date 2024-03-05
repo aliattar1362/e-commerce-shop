@@ -1,5 +1,5 @@
 import {CardMedia, CardContent, Typography, CardActions, Button, Grid, IconButton, Avatar, CardHeader, Card} from "@mui/material"
-import { ProductType } from "../../../misc/type"
+import { ProductType } from "../../../../misc/type"
 import { red } from "@mui/material/colors"
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
