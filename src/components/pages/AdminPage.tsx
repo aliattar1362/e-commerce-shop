@@ -1,25 +1,23 @@
-import { useState } from "react";
-import ProductPage from "./ProductsPage";
-import { Login } from "../categories/user/Login";
-import { useSelector } from "react-redux";
+import { Container, Typography } from "@mui/material";
 import { AppState } from "../../reduxToolkit/store";
-import UserProfile from "../categories/user/UserProfile";
-import { CategoriesPage } from "./CategoriesPage";
+import { useSelector } from "react-redux";
+import ProductPage from "./ProductsPage";
+import { CategoryCart } from "../categories/CategoryCart";
 
+const AdminPage = () => {
 
-export const AdminPage = () => {
-     
-  
 
     const accessToken = useSelector((state: AppState) => state.users.tokens?.access_token);
 
-    // const [refresh_token, setRefresh_token] = useState(localStorage.getItem("refresh_token") ?? 
-    //   null);
 
-
-  return (
-    <>
-       {accessToken? <ProductPage/> : <CategoriesPage/>}
-    </>
-  )
+    return ( 
+        <Container>
+            <Typography variant="h2">Admin Page</Typography>
+             {accessToken? <ProductPage/> : <CategoryCart category={""}/>}
+        </Container>
+        
+   
+    );
 }
+ 
+export default AdminPage;

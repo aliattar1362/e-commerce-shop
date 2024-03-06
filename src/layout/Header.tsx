@@ -1,7 +1,7 @@
 import { ShoppingCart } from "@mui/icons-material";
-import { AppBar, Toolbar, Typography, Switch, List, ListItem, IconButton, Badge, Box, Drawer } from "@mui/material";
-import { useSelector } from "react-redux";
-
+import { AppBar, Toolbar, Typography, Switch, List, ListItem, IconButton, Badge, Box, Drawer, Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import {logoutUser} from "../reduxToolkit/slices/userSlice"
 import { Link, NavLink } from "react-router-dom";
 import { AppState } from "../reduxToolkit/store";
 
@@ -17,11 +17,6 @@ const midLinks = [
     {title: "categories", path: "/categories"},
 ]
 
-const rightLinks = [
-    {title: "login", path: "/login"},
-    {title: "register", path: "/register"},
-]
-
 
 const navStyles = {
     color:"inherit", 
@@ -33,9 +28,15 @@ const navStyles = {
 
 const Header = ({darkMode, handleThemeChange}: Props) => {
 
+    const dispatch = useDispatch();
     const userData = useSelector((state: AppState) => state.users.user)
 
     const totalQuantity = useSelector((state: AppState) => state.cart.totalQuantity);
+
+
+    const handleLogout = ( ) => {
+        dispatch(logoutUser()); // Dispatch the logout action
+    };
    
  
     return ( 
@@ -65,12 +66,12 @@ const Header = ({darkMode, handleThemeChange}: Props) => {
                             </ListItem>
                         ))}
                             { userData?.role === "admin" && (
-                                <ListItem 
+                                <ListItem  
                                     component={NavLink}
-                                    to="contact"
-                                    key="contact"
+                                    to="admin"
+                                    key="admin"
                                     sx={navStyles}>
-                                        {"contact".toUpperCase()}
+                                        {"admin".toUpperCase()}
                                 </ListItem>
                             )
                            
@@ -79,10 +80,10 @@ const Header = ({darkMode, handleThemeChange}: Props) => {
                             { (userData?.role === "customer" || userData?.role ==="admin") && (
                                 <ListItem 
                                     component={NavLink}
-                                    to="about"
-                                    key="about"
+                                    to="profile"
+                                    key="profile"
                                     sx={navStyles}>
-                                        {"about".toUpperCase()}
+                                        {"profile".toUpperCase()}
                                 </ListItem>)
                             }
 
@@ -90,25 +91,33 @@ const Header = ({darkMode, handleThemeChange}: Props) => {
                 </Box>
 
                 <Box display="flex" alignItems="center">
-                     {/* Shopping cart icon button */}
                      <IconButton size="large" sx={{color: "inherit"}} component={Link} to={"/cart"}>
                           <Badge badgeContent={totalQuantity} color="secondary">
                               <ShoppingCart/>
                           </Badge>
                      </IconButton>  
                    
-
-
                     <List sx={{display: "flex" }}>
-                    {rightLinks.map( ({title, path}) => (
-                        <ListItem 
-                            component={NavLink}
-                            to={path}
-                            key={path}
-                            sx={navStyles}>
-                                {title.toUpperCase()}
-                        </ListItem>
-                    ))}
+                        { userData ?  <h4>Hello, {userData.name}</h4>: (
+                                <ListItem 
+                                    component={NavLink}
+                                    to="login"
+                                    key="login"
+                                    sx={navStyles}>
+                                        {"login".toUpperCase()}
+                                </ListItem>
+                            )}
+
+                            { userData ? <Button variant="text" onClick={handleLogout} sx={{color: "white", marginLeft: "10px"}}>
+                            LOGOUT
+                        </Button>:(
+                                <ListItem 
+                                    component={NavLink}
+                                    to="register"
+                                    key="register"
+                                    sx={navStyles}>
+                                        {"register".toUpperCase()}
+                                </ListItem>)}
                     </List>
                 </Box>
 
@@ -119,4 +128,3 @@ const Header = ({darkMode, handleThemeChange}: Props) => {
 }
  
 export default Header;
-export {}

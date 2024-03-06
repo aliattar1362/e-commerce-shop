@@ -20,16 +20,16 @@ const store = configureStore({
 export type AppState = ReturnType<typeof store.getState>;
 
 // Save user state and tokens in local storage.
-store.subscribe(() => {
-  const currentState = store.getState();
-  const userData = currentState.users.user;
-  const productData = currentState.products.product;
-  const tokens = currentState.users.tokens;
+// store.subscribe(() => {
+//   const currentState = store.getState();
+//   const userData = currentState.users.user;
+//   console.log("Writting user data: ", userData);
+//   const productData = currentState.products.product;
+//   const tokens = currentState.users.tokens;
+//   console.log("Writting user token: ", tokens);
 
-  // Store user data and tokens
-  localStorage.setItem("userData", JSON.stringify(userData));
-  localStorage.setItem("productData", JSON.stringify(productData));
-  localStorage.setItem("tokens", JSON.stringify(tokens));
-});
+//   // Store user data and tokens
+//   localStorage.setItem("productData", JSON.stringify(productData));
+// });
 
 export default store;

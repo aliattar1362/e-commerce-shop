@@ -9,10 +9,6 @@ export default function ProductPage() {
 
   const { data, setData, loading, error } = useFetch<ProductType[]>(baseUrl);
 
-  // Check if data is null
-  const isNull = data === null;
-  console.log("is null:", isNull);
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   if (!data) return null;

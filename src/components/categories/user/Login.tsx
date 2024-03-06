@@ -72,9 +72,6 @@ export const Login = ({token, setToken} : Props) => {
             </div>
 
             <div>
-               
-               {/* {error && <p>{error.response.data}</p>} */}
-
                   {error && typeof error === "object" && error.response && error.response.data && (
               <p>{error.response.data}</p>
             )}

@@ -1,8 +1,7 @@
 import { Container, Typography } from "@mui/material";
-import { useFetchAllProductsQuery, useDeleteProductMutation } from "../../reduxToolkit/productQuery";
-import { useState } from "react";
+import { useFetchAllProductsQuery} from "../../reduxToolkit/productQuery";
 
-const ContactPage = () => {
+const UserProfilePage = () => {
   const { data, isLoading } = useFetchAllProductsQuery();
   // const [deleteProduct] = useDeleteProductMutation();
 
@@ -15,9 +14,9 @@ const ContactPage = () => {
 
   return (
     <Container>
-      <Typography variant="h2">Contact Page</Typography>
+      <Typography variant="h2">User Profile Page</Typography>
     </Container>
   );
 };
 
-export default ContactPage;
+export default UserProfilePage;
