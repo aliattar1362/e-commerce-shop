@@ -6,8 +6,6 @@ This project leverages React.ts and Redux Toolkit to enhance skills in fetching,
 
 ## Custom Hooks
 
-## Custom Hooks
-
 - **useFetch(productsEndpoint: string): [Product[], boolean, string | null]**: This hook retrieves an array containing product objects, each accompanied by its respective properties. The `productsEndpoint` parameter specifies the API endpoint for fetching products. The hook returns a tuple containing three elements:
   - An array of product objects.
   - A boolean indicating whether the data is currently being fetched (`true` during the fetch operation).
