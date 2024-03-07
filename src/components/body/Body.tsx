@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
-import "../../styles/bodyStyles.css"
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { subscribeToNewsletter } from "../../reduxToolkit/slices/newsLetterSlice";
+// Styles
+import "../../styles/bodyStyles.css"
+
 export const Body = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
@@ -15,10 +17,6 @@ export const Body = () => {
     // Dispatch the subscribeToNewsletter action with the entered email
     dispatch(subscribeToNewsletter(email));
   };
-
-
-
-
 
   return (
     <div>

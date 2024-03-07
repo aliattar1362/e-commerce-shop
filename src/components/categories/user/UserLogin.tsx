@@ -46,7 +46,6 @@ export default function UserLogin() {
           },
         }
       );
-
       // Update user data in Redux store
       dispatch(saveUserData(response.data));
 

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import { logoutUser } from "../reduxToolkit/slices/userSlice";
+import { logoutUser, saveUserData } from "../reduxToolkit/slices/userSlice";
 import { AppState } from "../reduxToolkit/store";
 // Styles
 import { AppBar, Badge, Box, Button, Drawer, IconButton, List, ListItem, Switch, Toolbar, Typography } from "@mui/material";
@@ -36,6 +36,7 @@ const Header = ({ darkMode, handleThemeChange }: Props) => {
     };
 
   const userData = useSelector((state: AppState) => state.users.user);
+  
   const totalQuantity = useSelector((state: AppState) => state.cart.totalQuantity);
 
   const theme = useTheme();

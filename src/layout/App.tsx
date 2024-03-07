@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Header from "./Header";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import ProductPage from "../components/pages/ProductPage";
 import HomePage from "../components/pages/HomePage";
@@ -13,6 +12,8 @@ import UserRegister from "../components/categories/user/UserRegister";
 import { useDispatch } from "react-redux";
 import { loadLocalStorage } from "../reduxToolkit/slices/userSlice";
 import UserLogin from "../components/categories/user/UserLogin";
+// Styles
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 
 function App() {
 
@@ -43,7 +44,6 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header darkMode = {darkMode} handleThemeChange={handleThemeChange}/>
-        
           <Routes>
             <Route path="/" element={<HomePage darkMode = {darkMode} handleThemeChange={handleThemeChange}/>}  />
             <Route path="/products" element={<ProductPage/>} />

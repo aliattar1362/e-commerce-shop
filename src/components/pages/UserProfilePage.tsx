@@ -1,9 +1,11 @@
-import { Button, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../reduxToolkit/store";
 import { Link } from "react-router-dom";
 import { removeFromFavorites } from "../../reduxToolkit/slices/favoritesSlice";
 import { ProductType } from "../../misc/type";
+// Styles
+import { Button, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 
 const UserProfilePage = () => {
   const favoriteList = useSelector((state: AppState) => state.favorites.favorites);
@@ -13,7 +15,6 @@ const UserProfilePage = () => {
   const handleDelete = (product: ProductType) => {
     dispatch(removeFromFavorites(product))
   }
-
 
   return (
     <Container>

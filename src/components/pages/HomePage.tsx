@@ -1,8 +1,7 @@
-
-
+// Components
 import { FooterSection } from "../footer/FooterSection";
-import "../../styles/homeStyles.css"
 import { Body } from "../body/Body";
+// Styles
 
 interface Props {
   darkMode: boolean;

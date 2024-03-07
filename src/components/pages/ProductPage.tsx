@@ -2,6 +2,7 @@ import { ProductType } from "../../misc/type"
 import { baseUrl } from "../../data/data";
 import useFetch from "../../hook/useFetch";
 import ProductList from "../categories/products/productList/ProductList";
+// Styles
 import { Container } from "@mui/material";
 
 export default function ProductPage() {

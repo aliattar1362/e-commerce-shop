@@ -1,10 +1,11 @@
-import { Button, Container, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { Link, Link as RouterLink } from 'react-router-dom';
-import { Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../reduxToolkit/store";
 import { ProductType } from "../../misc/type";
 import { addItem, removeItem, deleteItem } from "../../reduxToolkit/slices/cartSlice";
+// Styles
+import { Button, Container, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 import "../../styles/cartStyles.css"
 
 

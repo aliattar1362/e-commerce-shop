@@ -1,16 +1,17 @@
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { Box, TextField, MenuItem, Typography, Card, CardContent, Grid, Container, Avatar, Button, CardActions, CardHeader, CardMedia} from '@mui/material';
-import '../../styles/categoryStyles.css'; 
 import { useState } from 'react';
 import { useFetchAllProductsQuery } from '../../reduxToolkit/productQuery';
 import { ProductType } from '../../misc/type';
-import { red } from '@mui/material/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { addToFavorites } from '../../reduxToolkit/slices/favoritesSlice';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { AppState } from '../../reduxToolkit/store';
+// Styles
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { red } from '@mui/material/colors';
+import { Box, TextField, MenuItem, Typography, Card, CardContent, Grid, Container, Avatar, Button, CardActions, CardHeader, CardMedia} from '@mui/material';
+import '../../styles/categoryStyles.css'; 
 
 const categories = [
   {
@@ -40,8 +41,6 @@ export const CategoriesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 2;
 
    if (isLoading) {
     return <Typography variant="h4">Loading...</Typography>;
@@ -70,11 +69,6 @@ export const CategoriesPage = () => {
     filteredProducts = filteredProducts?.slice().sort((a, b) => a.price - b.price);
   }
 
-  // Pagination
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = (filteredProducts ?? []).slice(indexOfFirstProduct, indexOfLastProduct);
-
   // Add to Fav list
   const handleAddToFavorite = (product: ProductType) => {
     if (userData?.role !== "admin" && userData?.role !== "customer") window.alert("Please register to add favorite products to wish list!");
@@ -82,13 +76,7 @@ export const CategoriesPage = () => {
       dispatch(addToFavorites(product));
     }
   }
-
-  const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
   
-
-
   return (
     <>
       <div className='carousel'>

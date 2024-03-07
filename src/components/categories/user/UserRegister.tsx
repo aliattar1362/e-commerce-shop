@@ -1,18 +1,17 @@
+// Internal Features
 import React, { useState } from "react";
 import { UserRegisterType } from "../../../misc/type";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { saveUserData } from "../../../reduxToolkit/slices/userSlice";
+// Styles
 import { Box, Button, TextField, Typography } from "@mui/material";
-
 
 export default function UserRegister() {
 
     const navigate= useNavigate();
     const dispatch = useDispatch();
-
-
 
   const [userData, setUserData] = useState<UserRegisterType>({
     name: "",
@@ -53,15 +52,12 @@ export default function UserRegister() {
     alert("Password must contain at least one uppercase letter.");
     return;
   }
-
     // send userData to backend
     axios
       .post("https://api.escuelajs.co/api/v1/users/", userData)
       .then((response) => {
         console.log("response", response);
         if (response.status === 201) {
-        // return user data
-
         // save data in redux
         dispatch(saveUserData(response.data))
         window.alert("Succsessful registration!")
@@ -71,12 +67,9 @@ export default function UserRegister() {
       })
       .catch((error) => console.log(error));
   }
-
+  
   return (
     <>
- 
-
-
         <Box className="containerStyle">
           <form>
             <Typography variant="h5" sx={{marginBottom: "20px"}}>
