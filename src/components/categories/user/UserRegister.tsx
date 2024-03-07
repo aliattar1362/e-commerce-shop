@@ -58,8 +58,6 @@ export default function UserRegister() {
       .then((response) => {
         console.log("response", response);
         if (response.status === 201) {
-        // save data in redux
-        dispatch(saveUserData(response.data))
         window.alert("Succsessful registration!")
         // navigate user to login in page
         navigate("/login")
