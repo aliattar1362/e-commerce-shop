@@ -22,11 +22,7 @@ export const cartSlice = createSlice({
 
     addItem: (state, action) => {
       const addedProduct = action.payload;
-      console.log("addedProduct", addedProduct);
-      console.log("state.cart.length", state.cart.length);
-      console.log("state.cart", state.cart);
-      console.log("state.totalQuantity", state.totalQuantity);
-
+      let addedToCart = false;
       const productIndex = state.cart.findIndex(
         (product) => product.id === addedProduct.id
       );
@@ -36,17 +32,21 @@ export const cartSlice = createSlice({
         addedProduct.rating.count -= 1;
         state.cart.push(addedProduct);
       } else {
+        // if product exist in cart
+        addedToCart = true;
+        if (
+          addedToCart === true &&
+          addedProduct.rating.initialCount - addedProduct.rating.count < 2
+        ) {
+          console.log("addedToCart: ", addedToCart);
+          // Alert the user
+          window.alert("You've previously added this product to your cart!");
+        }
         state.cart[productIndex].rating.count -= 1;
-
-        // if (
-        //   addedProduct.rating.initialCount - addedProduct.rating.count ===
-        //   1
-        // ) {
-        //   window.alert("This item is already in the cart!");
-        // }
       }
       state.totalQuantity = calculateTotalQuantity(state.cart);
     },
+
     removeItem: (state, action) => {
       const removedProduct = action.payload;
 

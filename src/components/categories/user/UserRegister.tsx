@@ -29,6 +29,31 @@ export default function UserRegister() {
   }
 
   function onClickHandler() {
+
+      // Basic validation
+  if (!userData.name || !userData.email || !userData.password) {
+    alert("Please fill in all required fields.");
+    return;
+  }
+
+  // Checking the email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(userData.email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+    // Check if the password meets the minimum length requirement
+  if (userData.password.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return;
+  }
+    // Check if the password contains at least one uppercase letter
+  if (!/[A-Z]/.test(userData.password)) {
+    alert("Password must contain at least one uppercase letter.");
+    return;
+  }
+
     // send userData to backend
     axios
       .post("https://api.escuelajs.co/api/v1/users/", userData)

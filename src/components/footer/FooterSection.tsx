@@ -13,10 +13,9 @@ const navStyles = {
 
 interface Props {
     darkMode: boolean;
-    handleThemeChange: () => void;
 }
 
-export const FooterSection = ({ darkMode, handleThemeChange }: Props) => {
+export const FooterSection = ({ darkMode }: Props) => {
    const footerStyles = {
         backgroundColor: darkMode ? "#121212" : "#1976d2",
         color: "white"

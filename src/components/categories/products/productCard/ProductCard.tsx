@@ -35,7 +35,7 @@ export default function ProductCard({product}: Props) {
          <CardMedia
         sx={{ height: 140 , backgroundSize: "contain"}}
         image={product.image}
-        title="green iguana"
+        title={product.title}
       />
       <CardContent>
         <Typography gutterBottom color="secondary" variant="h5">
