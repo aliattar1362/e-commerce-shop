@@ -57,16 +57,6 @@ span#value {
   padding: 0 0 0 20px;
 }
 
-.backgroundImage {
-  display: flex;
-  justify-content: flex-end;
-}
-
-#backgroundImage {
-  width: 50%;
-  margin: 0;
-}
-
 /* Category Card */
 .custom-card {
   height: 100%;
@@ -81,6 +71,8 @@ span#value {
 /* footer */
 
 footer {
+  margin-top: 30px;
+  position: relative;
   padding-top: 20px;
   width: 100%; /* Set width to 100% */
   display: grid;
@@ -175,24 +167,7 @@ footer .badges {
 @media screen and (max-width: 768px) {
   #header {
     padding: 15px;
-  }
-  #navbar {
     flex-direction: column;
     align-items: flex-start;
-  }
-  #navbar li {
-    padding: 10px 0;
-  }
-  #hero {
-    background-size: 50%;
-    /* Adjust background size for smaller screens */
-    padding: 0 20px;
-    /* Adjust padding for smaller screens */
-  }
-  #hero button {
-    padding: 10px 40px;
-    /* Adjust button padding for smaller screens */
-    font-size: 14px;
-    /* Adjust button font size for smaller screens */
   }
 }

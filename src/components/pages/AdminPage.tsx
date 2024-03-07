@@ -1,23 +1,107 @@
-import { Container, Typography } from "@mui/material";
-import { AppState } from "../../reduxToolkit/store";
+// import { useSelector } from "react-redux";
+// import { AppState } from "../../reduxToolkit/store";
+// import { Link } from "react-router-dom";
+// import { Container, Typography, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Button, IconButton } from "@mui/material";
+// import { useFetchAllProductsQuery } from "../../reduxToolkit/productQuery";
+// import { Delete } from "@mui/icons-material";
+
+
+// export const AdminPage = () => {
+//   const userData = useSelector((state: AppState) => state.users.user);
+//   const { data: productsList, error, isLoading } = useFetchAllProductsQuery();
+//   if (isLoading) {
+//     return <Typography variant="h4">Loading...</Typography>;
+//   }
+
+//   if (error) {
+//     return <Typography variant="h4">Error loading products.</Typography>;
+//   }
+
+
+//   return (
+//      <Container>
+//       <Typography variant="h3" sx={{color: "green"}}>Welcome {userData?.name}! This is the list of whole products!</Typography>
+//       <TableContainer>
+//         <Table>
+//           <TableHead>
+//             <TableRow>
+//               <TableCell>Product Name</TableCell>
+//               <TableCell>Price</TableCell>
+//               <TableCell>Delete</TableCell>
+//             </TableRow>
+//           </TableHead>
+
+//           <TableBody>
+//            {productsList?.map(product => (
+//               <TableRow>
+//               <TableCell>{product.title}</TableCell>
+//               <TableCell>
+//                 <img src={product.image} alt="Product" style={{height: 140 , backgroundSize: "contain"}}/>
+//               </TableCell>
+//               <TableCell><IconButton color="error" >
+//                   <Delete /> 
+//                 </IconButton></TableCell>
+//             </TableRow>
+//            ))}
+//           </TableBody>
+//         </Table>
+//       </TableContainer>
+//     </Container>
+//   )
+// }
+
 import { useSelector } from "react-redux";
-import ProductPage from "./ProductsPage";
-import { CategoryCart } from "../categories/CategoryCart";
+import { AppState } from "../../reduxToolkit/store";
+import { Container, Typography, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from "@mui/material";
+import { useFetchAllProductsQuery, useDeleteProductMutation } from "../../reduxToolkit/productQuery";
+import { Delete } from "@mui/icons-material";
 
-const AdminPage = () => {
+export const AdminPage = () => {
+  const userData = useSelector((state: AppState) => state.users.user);
+  const { data: productsList, error, isLoading } = useFetchAllProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation(); // Destructure the mutation function
 
+  const handleDeleteProduct = async (productId: number) => {
+      };
+  
+  if (isLoading) {
+    return <Typography variant="h4">Loading...</Typography>;
+  }
 
-    const accessToken = useSelector((state: AppState) => state.users.tokens?.access_token);
+  if (error) {
+    return <Typography variant="h4">Error loading products.</Typography>;
+  }
 
+  return (
+    <Container>
+      <Typography variant="h3" sx={{ color: "green" }}>Welcome {userData?.name}! This is the list of whole products!</Typography>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Product Name</TableCell>
+              <TableCell>Image</TableCell>
+              <TableCell>Delete</TableCell>
+            </TableRow>
+          </TableHead>
 
-    return ( 
-        <Container>
-            <Typography variant="h2">Admin Page</Typography>
-             {accessToken? <ProductPage/> : <CategoryCart category={""}/>}
-        </Container>
-        
-   
-    );
-}
- 
-export default AdminPage;
+          <TableBody>
+            {productsList?.map((product) => (
+              <TableRow key={product.id}>
+                <TableCell>{product.title}</TableCell>
+                <TableCell>
+                  <img src={product.image} alt="Product" style={{ height: 140, backgroundSize: "contain" }} />
+                </TableCell>
+                <TableCell>
+                  <IconButton color="error">
+                    <Delete />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Container>
+  );
+};

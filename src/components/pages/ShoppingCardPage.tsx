@@ -1,30 +1,27 @@
-import { Button, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Container, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { Link as RouterLink } from 'react-router-dom';
 import { Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../reduxToolkit/store";
 import { ProductType } from "../../misc/type";
 import { addItem, removeItem, deleteItem } from "../../reduxToolkit/slices/cartSlice";
-
-
+import "../../styles/cartStyles.css"
 
 
 export default function ShoppingCartPage() {
   const dispatch = useDispatch()
 
   const addToCart = (product: ProductType) => {
-    // dispatch an addItem action
     dispatch(addItem(product))
   }
 
   const removeFromCart = (product: ProductType) => {
-    // dispatch an addItem action
+   
     dispatch(removeItem(product))
   }
 
 
   const deleteFromCart = (product: ProductType) => {
-    // dispatch an addItem action
       dispatch(deleteItem(product))
   }
 
@@ -33,28 +30,22 @@ export default function ShoppingCartPage() {
 
   const totalAmount = cartProducts.reduce((acc, item) => acc + (item.price * ((item.rating.initialCount ?? 0) - (item.rating.count))), 0).toFixed(2);
 
+  function handleCheckout() {
+    if (cartProducts.length === 0) window.alert("Cart is empty!");
+    else window.alert("Congratulations! Your shopping has been completed!");
+  }
 
   return (
-    <>
-      <Typography
-  variant="h3"
-  sx={{
-    mb: "30px",
-    fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
-    color: "#072a40", // #31383f, #2f3020, #013328
-    textAlign: "center", // Align the text to the center
-    fontWeight: "bold", // Add bold font weight
-    textTransform: "uppercase", // Convert text to uppercase
-    letterSpacing: "1px", // Add letter spacing
-    borderBottom: "3px solid #072a40", // Add a bottom border
-    paddingBottom: "10px", // Add some space between text and border
-  }}
->
+   
+      <div>
+        <Container>
+              <Typography className="cartTitle"
+  variant="h3">
   Cart Items
 </Typography>
 
-      <div>
-        {cartProducts.length === 0 && <div style={{textAlign: "center", fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",  fontSize: "18px", color: "#f21137", margin: "20px 0",}}>Cart is empty</div>}
+      <div id="cartEmpty">
+        {cartProducts.length === 0 && <div >Cart is empty</div>}
       </div>
 
          <TableContainer component={Paper}>
@@ -111,7 +102,13 @@ export default function ShoppingCartPage() {
     <Button component={RouterLink} to="/products" variant="contained" sx={{mt: "50px"}}>
       Continue Shopping?
     </Button>
+
+    <Button onClick={handleCheckout} variant="contained" sx={{mt: "50px", ml: "20px", backgroundColor: "green"}}>
+     Checkout
+    </Button>
+        </Container>
+      </div>
   
-    </>
+    
   )
 }

@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { baseUrl } from "../../../../data/data";
 import useFetch from "../../../../hook/useFetch";
 import { ProductType } from "../../../../misc/type";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../../../reduxToolkit/slices/cartSlice";
 import { useState } from "react";
+import { AppState } from "../../../../reduxToolkit/store";
 
 
 
@@ -13,9 +14,7 @@ const ProductDetails = () => {
 
     const dispatch = useDispatch()
 
-   
-
-  // State to manage the quantity value
+   // State to manage the quantity value
   const [quantity, setQuantity] = useState(0);
 
     const addToCart = (product: ProductType, quantity : number) => {

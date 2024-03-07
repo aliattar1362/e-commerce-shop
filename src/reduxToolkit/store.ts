@@ -3,12 +3,14 @@ import cartReducer from "./slices/cartSlice";
 import userReducer from "./slices/userSlice";
 import productReducer from "./slices/productSlice";
 import { productQueries } from "./productQuery";
+import favoritesReducer from "./slices/favoritesSlice";
 
 const store = configureStore({
   reducer: {
     cart: cartReducer,
     users: userReducer,
     products: productReducer,
+    favorites: favoritesReducer,
     // query
     [productQueries.reducerPath]: productQueries.reducer,
   },
@@ -18,18 +20,5 @@ const store = configureStore({
 });
 
 export type AppState = ReturnType<typeof store.getState>;
-
-// Save user state and tokens in local storage.
-// store.subscribe(() => {
-//   const currentState = store.getState();
-//   const userData = currentState.users.user;
-//   console.log("Writting user data: ", userData);
-//   const productData = currentState.products.product;
-//   const tokens = currentState.users.tokens;
-//   console.log("Writting user token: ", tokens);
-
-//   // Store user data and tokens
-//   localStorage.setItem("productData", JSON.stringify(productData));
-// });
 
 export default store;
