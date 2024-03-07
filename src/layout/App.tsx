@@ -10,9 +10,9 @@ import {AdminPage} from "../components/pages/AdminPage";
 import ShoppingCartPage from "../components/pages/ShoppingCardPage";
 import { CategoriesPage } from "../components/pages/CategoriesPage";
 import UserRegister from "../components/categories/user/UserRegister";
-import UserProfile from "../components/categories/user/UserProfile";
 import { useDispatch } from "react-redux";
 import { loadLocalStorage } from "../reduxToolkit/slices/userSlice";
+import UserLogin from "../components/categories/user/UserLogin";
 
 function App() {
 
@@ -53,7 +53,7 @@ function App() {
             <Route path="/admin" element={<AdminPage/>} />
             <Route path="/cart" element={<ShoppingCartPage />} />
             <Route path="/register" element={<UserRegister />}/>
-            <Route path="/login" element={<UserProfile  />}/>
+            <Route path="/login" element={<UserLogin />}/>
             <Route path="/profile" element={<UserProfilePage />}/>
           </Routes>
       </ThemeProvider>

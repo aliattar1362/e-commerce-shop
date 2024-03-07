@@ -3,21 +3,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppState } from "../../../reduxToolkit/store";
 import axios from "axios";
 import { useState } from "react";
-import { Box, Typography, TextField, Button } from "@mui/material";
+import { Box, TextField, Button } from "@mui/material";
 import { saveUserData, saveTokens } from "../../../reduxToolkit/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
 
-export default function UserProfile() {
+export default function UserLogin() {
  
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
  const existingUser = useSelector((state: AppState) => state.users.user)
-  if (existingUser) {
-    navigate("/");
-  }
+ console.log("existingUser", existingUser)
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -69,9 +67,10 @@ export default function UserProfile() {
 
   return (
     <div>
-      <Typography variant="h2">UserProfile</Typography>
+    
       <Box className="containerStyle">
         <form onSubmit={handleSubmit}>
+          <p style={{fontSize: 20, }}>Login here</p>
           <div>
             <TextField
               id="email"

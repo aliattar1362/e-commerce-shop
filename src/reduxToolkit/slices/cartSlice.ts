@@ -32,15 +32,13 @@ export const cartSlice = createSlice({
         addedProduct.rating.count -= 1;
         state.cart.push(addedProduct);
       } else {
-        // if product exist in cart
+        // if product exists in cart
         addedToCart = true;
         if (
           addedToCart === true &&
           addedProduct.rating.initialCount - addedProduct.rating.count < 2
         ) {
-          console.log("addedToCart: ", addedToCart);
-          // Alert the user
-          window.alert("You've previously added this product to your cart!");
+          // Handle specific logic when the product is already in the cart
         }
         state.cart[productIndex].rating.count -= 1;
       }
@@ -78,6 +76,11 @@ export const cartSlice = createSlice({
     },
   },
 });
+
+// Move local storage logic outside of the createSlice block
+export const saveCartToLocalStorage = (cart: ProductType[]) => {
+  localStorage.setItem("cart", JSON.stringify(cart.map((item) => item)));
+};
 
 const cartReducer = cartSlice.reducer;
 export const { setCart, addItem, removeItem, deleteItem } = cartSlice.actions;

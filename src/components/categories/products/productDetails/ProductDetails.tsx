@@ -1,32 +1,30 @@
+// Styles
 import { Button, Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
+// Internal features
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../../../../data/data";
 import useFetch from "../../../../hook/useFetch";
 import { ProductType } from "../../../../misc/type";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { addItem } from "../../../../reduxToolkit/slices/cartSlice";
 import { useState } from "react";
-import { AppState } from "../../../../reduxToolkit/store";
-
 
 
 const ProductDetails = () => {
 
     const dispatch = useDispatch()
 
-   // State to manage the quantity value
-  const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(0);
 
     const addToCart = (product: ProductType, quantity : number) => {
         for (let i = 0; i < quantity; i++) {
-             // dispatch an addItem action
             dispatch(addItem(product))
         }
     }
 
-     const {id} = useParams<{id: string}>();
+    const {id} = useParams<{id: string}>();
 
-     const { data, loading, error } = useFetch<ProductType>(`${baseUrl}/${id}`);
+    const { data, loading, error } = useFetch<ProductType>(`${baseUrl}/${id}`);
 
     if (loading) {
         return <p>Loading...</p>;
@@ -80,7 +78,7 @@ const ProductDetails = () => {
                                 </TableCell>
                                 <TableCell>
                                     <TextField variant="outlined" type="number" label="Quantity in Cart"  value={quantity}
-                                    onChange={(e) => setQuantity(parseInt(e.target.value, 10))} />
+                                    onChange={(e) => setQuantity(parseInt(e.target.value, 10))} inputProps={{ min: 0, max: 10}}/>
                                 </TableCell>
                             </TableRow>
                         </TableBody>

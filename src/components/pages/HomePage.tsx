@@ -2,6 +2,7 @@
 
 import { FooterSection } from "../footer/FooterSection";
 import "../../styles/homeStyles.css"
+import { Body } from "../body/Body";
 
 interface Props {
   darkMode: boolean;
@@ -12,9 +13,7 @@ const HomePage = ({ darkMode, handleThemeChange }: Props) => {
 
   return (
     <div style={{ margin: "0" }}>
-      <div className="img">
-    
-      </div>
+      <Body/>
       <FooterSection darkMode={darkMode} />
     </div>
   );
