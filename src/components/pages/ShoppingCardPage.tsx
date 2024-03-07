@@ -1,5 +1,5 @@
 import { Button, Container, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import { Link as RouterLink } from 'react-router-dom';
+import { Link, Link as RouterLink } from 'react-router-dom';
 import { Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../reduxToolkit/store";
@@ -9,6 +9,8 @@ import "../../styles/cartStyles.css"
 
 
 export default function ShoppingCartPage() {
+  const userData = useSelector((state: AppState) => state.users.user);
+
   const dispatch = useDispatch()
 
   const addToCart = (product: ProductType) => {
@@ -31,7 +33,9 @@ export default function ShoppingCartPage() {
   const totalAmount = cartProducts.reduce((acc, item) => acc + (item.price * ((item.rating.initialCount ?? 0) - (item.rating.count))), 0).toFixed(2);
 
   function handleCheckout() {
-    if (cartProducts.length === 0) window.alert("Cart is empty!");
+    if (cartProducts.length === 0 ) window.alert("Cart is empty!");
+    else if (userData?.role !== "admin" && userData?.role !== "customer") window.alert("Please register to complete your shopping");
+
     else window.alert("Congratulations! Your shopping has been completed!");
   }
 
@@ -69,8 +73,9 @@ export default function ShoppingCartPage() {
               key={item.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="item">
-                {item.title}
+              <TableCell component="th" scope="item" >
+                <Button id='view' size="medium" component={Link} to={`/products/${item.id}`}>{item.title}</Button>
+                
               </TableCell>
               <TableCell align="right" sx={{textAlign: "left"}}>€{(item.price).toFixed(2)}</TableCell>
               <TableCell align="right" sx={{textAlign: "left"}}>{(item.rating.initialCount ?? 0) - (item.rating.count) }</TableCell>

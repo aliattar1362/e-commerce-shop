@@ -6,10 +6,11 @@ import { useState } from 'react';
 import { useFetchAllProductsQuery } from '../../reduxToolkit/productQuery';
 import { ProductType } from '../../misc/type';
 import { red } from '@mui/material/colors';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { addToFavorites } from '../../reduxToolkit/slices/favoritesSlice';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { AppState } from '../../reduxToolkit/store';
 
 const categories = [
   {
@@ -31,12 +32,16 @@ const categories = [
 ];
 
 export const CategoriesPage = () => {
+  const userData = useSelector((state: AppState) => state.users.user);
+
   const dispatch = useDispatch();
 
   const { data: productsList, error, isLoading } = useFetchAllProductsQuery();
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 2;
 
    if (isLoading) {
     return <Typography variant="h4">Loading...</Typography>;
@@ -64,6 +69,23 @@ export const CategoriesPage = () => {
   } else if (sortBy === "priceLowToHigh") {
     filteredProducts = filteredProducts?.slice().sort((a, b) => a.price - b.price);
   }
+
+  // Pagination
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = (filteredProducts ?? []).slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Add to Fav list
+  const handleAddToFavorite = (product: ProductType) => {
+    if (userData?.role !== "admin" && userData?.role !== "customer") window.alert("Please register to add favorite products to wish list!");
+    else {
+      dispatch(addToFavorites(product));
+    }
+  }
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
   
 
 
@@ -157,7 +179,7 @@ export const CategoriesPage = () => {
                     <Button id='favorite'
                       variant="text"
                       color="primary"
-                      onClick={() => dispatch(addToFavorites(product))}
+                      onClick={() => handleAddToFavorite(product)}
                     >
                       <FavoriteIcon fontSize="large" />
                     </Button>
@@ -170,7 +192,6 @@ export const CategoriesPage = () => {
         </div>
       </div>
     </div>
-
     </>
   )
 }

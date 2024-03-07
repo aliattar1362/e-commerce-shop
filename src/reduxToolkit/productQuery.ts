@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseApiUrl } from "../data/data";
 import { ProductType } from "../misc/type";
+import { useDispatch } from "react-redux";
 
 export const productQueries = createApi({
   reducerPath: "productsApi",
@@ -11,12 +12,7 @@ export const productQueries = createApi({
       query: () => "",
       providesTags: ["Products"],
     }),
-    deleteProduct: builder.mutation<boolean, number>({
-      query: (productId) => ({ url: `${productId}`, method: "DELETE" }),
-      invalidatesTags: ["Products"],
-    }),
   }),
 });
 
-export const { useFetchAllProductsQuery, useDeleteProductMutation } =
-  productQueries;
+export const { useFetchAllProductsQuery } = productQueries;

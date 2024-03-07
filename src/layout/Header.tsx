@@ -1,10 +1,12 @@
+//Internal Features
 import React, { useState } from 'react';
-import { AppBar, Badge, Box, Button, Drawer, IconButton, List, ListItem, Switch, Toolbar, Typography } from "@mui/material";
-import { ShoppingCart, Menu as MenuIcon } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { logoutUser } from "../reduxToolkit/slices/userSlice";
 import { AppState } from "../reduxToolkit/store";
+// Styles
+import { AppBar, Badge, Box, Button, Drawer, IconButton, List, ListItem, Switch, Toolbar, Typography } from "@mui/material";
+import { ShoppingCart, Menu as MenuIcon } from "@mui/icons-material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
@@ -30,10 +32,8 @@ const navStyles = {
 const Header = ({ darkMode, handleThemeChange }: Props) => {
   const dispatch = useDispatch();
       const handleLogout = () => {
-        dispatch(logoutUser()); // Dispatch the logout action
+        dispatch(logoutUser());
     };
- 
-
 
   const userData = useSelector((state: AppState) => state.users.user);
   const totalQuantity = useSelector((state: AppState) => state.cart.totalQuantity);
@@ -61,7 +61,7 @@ const Header = ({ darkMode, handleThemeChange }: Props) => {
     <>
      <Box sx={{ display: "flex", alignItems: "center" }}>
         <IconButton size="large" sx={{ color: "inherit" }} onClick={toggleDrawer(true)}>
-          <MenuIcon />
+          <MenuIcon/>
         </IconButton>
       </Box>
     
@@ -69,7 +69,7 @@ const Header = ({ darkMode, handleThemeChange }: Props) => {
         anchor="left"
         open={drawerOpen}
         onClose={toggleDrawer(false)}
-        sx={{ width: "100px"}}
+        sx={{ width: "100px",color: "red"}}
       >
         <List>
           {midLinks.map(({ title, path }) => (

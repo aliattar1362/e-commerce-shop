@@ -1,15 +1,14 @@
-
+// Internal features
 import { ProductType } from "../../../../misc/type";
-import { ManageProducts } from "../manageProducts/ManageProducts";
 import ProductCard from "../productCard/ProductCard";
-import { Button, Grid } from "@mui/material";
+// Style
+import { Grid } from "@mui/material";
 
 interface Props {
   products: ProductType[];
-  addProduct: () => void;
 }
 
-export default function ProductList({ products, addProduct}: Props) {
+export default function ProductList({ products}: Props) {
   return (
     <Grid container spacing={2}>
       {products.map((product) => (
@@ -18,8 +17,6 @@ export default function ProductList({ products, addProduct}: Props) {
         </Grid>
       ))}
       <Grid item xs={12}>
-        {/* <Button onClick={addProduct} variant="contained" sx={{margin: "40px 0"}}>Add Product</Button> */}
-        <ManageProducts addProduct= {addProduct}/>
       </Grid>
     </Grid>
   );

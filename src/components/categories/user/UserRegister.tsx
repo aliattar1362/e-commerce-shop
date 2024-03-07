@@ -64,11 +64,9 @@ export default function UserRegister() {
 
         // save data in redux
         dispatch(saveUserData(response.data))
-
-        console.log("response.data", response.data)
-
-        // navigate user to login in profile page
-        navigate("/profile")
+        window.alert("Succsessful registration!")
+        // navigate user to login in page
+        navigate("/login")
         }
       })
       .catch((error) => console.log(error));
@@ -77,7 +75,7 @@ export default function UserRegister() {
   return (
     <>
  
-    <Typography variant="h2" className="heading">UserRegister</Typography>
+
 
         <Box className="containerStyle">
           <form>
