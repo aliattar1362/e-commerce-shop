@@ -131,8 +131,6 @@ Material UI components are utilized alongside custom CSS styling to design and r
 
 - **Redux Toolkit:** A comprehensive set of utilities for managing the state of a React application. Redux Toolkit simplifies the process of handling complex state logic, offering a predictable state container. This ensures a centralized and organized approach to managing application data, leading to more maintainable code.
 
-Feel free to adjust the details based on your project's specific use of these technologies and any additional features they enable in your application. If there are other significant technologies or tools you'd like to highlight, you can include them in this section.
+## Deploy
 
-<!-- ## Deploy
-
-Please see my React project form here: [Breweries App](https://aliattar1362.github.io/fs17-week3-React/) -->
+Please see my E-Commerece project form here: "https://aliattar1362.github.io/e-commerce-shop/"
