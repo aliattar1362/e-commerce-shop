@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../../../reduxToolkit/slices/cartSlice";
 
-
 interface Props {
     product: ProductType;
 }
@@ -52,7 +51,6 @@ export default function ProductCard({product}: Props) {
    
       </CardActions>
       </Card>
-       
     </div>
   )
 }

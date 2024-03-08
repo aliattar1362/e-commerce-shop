@@ -51,3 +51,8 @@ export interface ValidationErrors {
   password?: string;
   confirmPassword?: string;
 }
+
+export interface Pagination {
+  products: ProductType[];
+  hasMore: boolean;
+}
